@@ -1,6 +1,4 @@
 # Project-11
-CloudOps Sentinel
-[README.md](https://github.com/user-attachments/files/29301904/README.md)
 # CloudOps Sentinel
 
 CloudOps Sentinel is a Python DevOps project that demonstrates how to build, test, containerize, and deploy a cloud-ready service.
