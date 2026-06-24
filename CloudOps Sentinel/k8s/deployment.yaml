@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudops-sentinel
+  labels:
+    app: cloudops-sentinel
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cloudops-sentinel
+  template:
+    metadata:
+      labels:
+        app: cloudops-sentinel
+    spec:
+      containers:
+        - name: api
+          image: cloudops-sentinel:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+          envFrom:
+            - configMapRef:
+                name: cloudops-sentinel-config
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 20
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+

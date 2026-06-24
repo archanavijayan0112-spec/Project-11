@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cloudops-sentinel-config
+data:
+  CLOUDOPS_ENVIRONMENT: production
+  CLOUDOPS_CLOUD_PROVIDER: aws
+
